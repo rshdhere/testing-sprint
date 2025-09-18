@@ -34,3 +34,6 @@ yarn-error.log*
 # Production build
 /dist
 /build
+
+# typescript cache
+tsconfig.tsbuildinfo
