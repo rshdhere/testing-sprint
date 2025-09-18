@@ -1,9 +1,10 @@
 import express, { Request, Response } from 'express';
+import { prismaClient } from './db';
 
 export const app = express();
 app.use(express.json());
 
-app.post('/sum', (req: Request, res: Response) => {
+app.post('/sum', async (req: Request, res: Response) => {
     const a = req.body.a;
     const b = req.body.b;
 
@@ -12,17 +13,34 @@ app.post('/sum', (req: Request, res: Response) => {
             message: "sorry we dont support big numbers"
         })
     }
-
+    
     const result = a + b;
+    await prismaClient.requests.create({
+        data: {
+            a: a,
+            b: b,
+            answer: result,
+            type: "Sum"
+        }
+    })
 
     res.json({answer: result})
 })
 
-app.post('/multiply', (req: Request, res: Response) => {
+app.post('/multiply', async (req: Request, res: Response) => {
     const a = req.body.a;
     const b = req.body.b;
 
     const result = a * b;
+
+    await prismaClient.requests.create({
+        data: {
+            a: a,
+            b: b, 
+            answer: result,
+            type: "Multiply"
+        }
+    })
 
     res.json({answer: result})
 })

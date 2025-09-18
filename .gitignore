@@ -37,3 +37,4 @@ yarn-error.log*
 
 # typescript cache
 tsconfig.tsbuildinfo
+/src/generated/prisma
