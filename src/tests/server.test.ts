@@ -1,6 +1,6 @@
-import {describe, expect, it} from '@jest/globals';
+import { describe, expect, it } from 'vitest';
 import { app } from '..';
-import request from 'supertest'
+import request from 'supertest';
 
 describe("tests the sum function", () => {
     it("should return 3 from 1 and 2", async () => {
