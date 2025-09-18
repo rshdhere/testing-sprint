@@ -7,6 +7,12 @@ app.post('/sum', (req: Request, res: Response) => {
     const a = req.body.a;
     const b = req.body.b;
 
+    if (a > 1000000 || b > 1000000) {
+        return res.status(422).json({
+            message: "sorry we dont support big numbers"
+        })
+    }
+
     const result = a + b;
 
     res.json({answer: result})

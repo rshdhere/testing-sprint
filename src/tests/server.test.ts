@@ -13,6 +13,16 @@ describe("tests the sum function", () => {
         expect(response.body.answer).toBe(3);
         expect(response.statusCode).toBe(200);
     })
+
+    it("Should fail when a number is too big", async () => {
+        const res = await request(app).post("/sum").send({
+            a: 1000000000000,
+            b: 2
+        });
+
+        expect(res.body.message).toBe("sorry we dont support big numbers");
+        expect(res.statusCode).toBe(422);
+    })
 })
 
 describe("tests the multiply function", () => {
