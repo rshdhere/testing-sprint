@@ -4,6 +4,10 @@ import { prismaClient } from './db';
 export const app = express();
 app.use(express.json());
 
+
+
+
+
 app.post('/sum', async (req: Request, res: Response) => {
     const a = req.body.a;
     const b = req.body.b;
