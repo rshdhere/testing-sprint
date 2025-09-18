@@ -1,7 +1,6 @@
-import { vi } from "vitest";
+import { PrismaClient } from "@prisma/client";
+import { mockDeep } from 'vitest-mock-extended';
 
-export const prismaClient = {
-    requests: {
-        create: vi.fn()
-    }
-}
+// new PrismaClient()
+
+export const prismaClient = mockDeep<PrismaClient>()
