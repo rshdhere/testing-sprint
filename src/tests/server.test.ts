@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { app } from '..';
 import request from 'supertest';
+import { prismaClient } from '../__mocks__/db';
 
 // deep mocking
 vi.mock('../db')
@@ -8,6 +9,15 @@ vi.mock('../db')
 describe("tests the sum function", () => {
     it("should return 3 from 1 and 2", async () => {
         // you can use axios or fetch || supertest
+        // we write before we send the request
+        prismaClient.requests.create.mockResolvedValue({
+            id: 1,
+            a: 1,
+            b: 2,
+            answer: 3,
+            type: "Sum"
+
+        })
         const response = await request(app).post('/sum').send({
             a: 1,
             b: 2
